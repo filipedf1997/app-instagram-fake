@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 d-flex justify-content-end" [@banner-animation]="estadoAnimacao">
+      <app-banner></app-banner>
+    </div>
+
+    <div *ngIf="cadastro; else login">
+      <div 
+        class="col-sm-6 d-flex justify-content-start" 
+        [@painel-animation]="estadoAnimacao"
+        (@painel-animation.start)="animacaoInicio()"
+        (@painel-animation.done)="animacaoFim()"
+      >
+        <app-cadastro (alternadorC)="alternaPainel($event)"></app-cadastro>
+      </div>
+    </div>
+
+    <ng-template #login>
+      <div 
+        class="col-sm-6 d-flex justify-content-start" 
+        [@painel-animation]="estadoAnimacao"
+        (@painel-animation.start)="animacaoInicio()"
+        (@painel-animation.done)="animacaoFim()"  
+      >
+        <app-login (alternadorL)="alternaPainel($event)"></app-login>
+      </div>
+    </ng-template>
+      
+  </div>
+</div>
